@@ -1,0 +1,253 @@
+<html> 
+  <head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="K020-4w-DRFXf9itQ8IUmc-pJQZ0ACWAcCGp9NrRdCo" />
+    <title>{%block title%}{%endblock%}</title>
+
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.6.1/font/bootstrap-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet" />
+ <script src="{{url_for('static', filename='funkcijas.js')}}">
+ </script>
+
+    <style> body {
+    background-repeat: no-repeat;
+    background-image:url('{% block fons %}{{url_for("static", filename="images/mountain.png")}}{%endblock%}');
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover; }
+    </style>
+
+      </head>
+  <!-- Sākas navbar  -->
+    <nav class="navbar px-lg-5 px-0 navbar-expand-md navbar-light navbar-custom fixed-top" id="navbar"> <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>  
+            <a class="navbar-brand h1" href="/">
+            <span class="fw-bold text-dark justify-content-start">
+              <img src="/static/images/cs.png" alt="LOGO" width="100" height="100">
+          </span>
+            </a>
+
+                <div class="collapse row navbar-collapse" id="navbarSupportedContent">
+              <div class="col">
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown" style="margin-right: 5px;">
+              <a class="btn btn-success" style="background-color: forestgreen;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ceļojumi</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/stasti">Stāsti</a></li>
+              <li><a class="dropdown-item" href="/marsruti">Maršruti</a></li>
+            </ul>
+          </li>
+                <li class="nav-item dropdown" style="margin-right: 5px;">
+                  <a class="btn btn-success" style="background-color: forestgreen;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Informācija</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/forums">Forums</a></li>
+              <li><a class="dropdown-item" href="/jaunumi">Jaunumi</a></li>
+              <li><a class="dropdown-item" href="/padomi">Padomi</a></li>
+            </ul>
+          </li>
+                <li class="nav-item dropdown" style="margin-right: 5px;">
+            <a class="btn btn-success" style="background-color: forestgreen;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Testi</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/flag">Guess the flag</a></li>
+              <li><a class="dropdown-item" href="/country">Guess the country</a></li>
+
+            </ul>
+          </li>
+
+                {% if login == True: %}
+              <li class="nav-item dropdown" style="margin-right: 5px;">
+                <a class="btn btn-success" style="background-color: forestgreen;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mans profils</a>
+                          <ul class="dropdown-menu">
+  <li>
+                  <a class="dropdown-item" href="/mansprofils">Mans profils</a> <!-- Nemainīt uz /apskatīt, atstāt, kā /mansprofils 
+  -Roberts M (: -->  
+                  <a class="dropdown-item" href="/publish">Publicēt</a>
+                </li>
+
+
+
+
+
+
+  <!--           <form class="form-inline my-2 my-lg-0 d-flex" id="search"> -->         
+
+  <!--             <form class = form-inline> -->
+  <!--               <div class="col-4"> -->
+
+            <div class="btn-space d-md-none">
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mans profils</a> </li>
+                        <ul class="dropdown-menu">
+  <li>
+
+
+                <a class="dropdown-item" href="/publish">Publicēt</a>
+              </li>
+                          </div> </ul>
+                    {% else %} {% endif %}
+                        </ul>
+            </div>
+              <span class="col-12 col-xl d-none d-md-block">
+              <h1 class="virsraksts">Ceļojumu Skola</h1>
+              </span>
+
+
+    <div class="btn-space d-md-none">
+              <input class="" type="search" placeholder="Search" aria-label="Search" oninput= "suggestions()">
+    </div>
+
+  <!--               </div> -->
+
+    <div class="btn-space d-md-none mt-1">
+              <button class="btn btn-success" type="submit" onclick = "search()">Search</button>
+             </div>
+
+    </div>
+
+
+        <div class="float-right btn-space d-none d-md-block">
+            <input class="searchField" type="search" placeholder="Search" aria-label="Search" oninput="suggestions()">
+        </div>
+        <div class="float-right btn-space d-none d-md-block">
+            <button class="btn btn-success" style="background-color: forestgreen;" type="submit" onclick="search()">Search</button>
+        </div>
+    {% if login == True: %}
+      <div class="float-right d-none d-md-block">
+  <!--            <div class="col-4 mr-auto"> -->
+                <a class="btn btn-primary" aria-current="page" href="/logout" style="background-color: dodgerblue;">Log out</a>
+           </div>
+
+    {% else %} 
+
+    <div class="float-right d-none d-md-block">
+  <!--            <div class="col-4 mr-auto"> -->
+                <a class="btn btn-primary" aria-current="page" href="/RIHARDS" style="background-color: dodgerblue;">Log in</a>
+           </div>
+
+    {% endif %}
+    </div>
+
+        </nav>
+
+  <!-- Beidzas navbar  -->
+
+
+<body>  
+  <div class="container-fluid">
+<div class = "row">
+<div class = "d-none d-sm-block col-lg-1"> </div>
+<div class = "col-lg-8 col-sm-12 col-md-8">
+
+
+  <div class='text-bg-light bg-opacity-50'>
+<div class="text-center align-center m-5">
+
+                  <h1>{%block virsraksts%} {%endblock%}</h1>
+  </div>
+
+
+
+<!-- <div class="text-center align-center"> -->
+
+
+  {%block saturs%}
+
+
+
+
+
+{%endblock%}
+  </div>
+    <!-- </div> -->
+</div>
+  <!-- Sidebar -->
+  <div class ="border-3 border-start border-bottom text-bg-light bg-opacity-50 col vh-100 sticky-top">
+    <div class="h-50">
+    <div class ="row">
+      <div class="p-4 mb-2 bg-transparent text-dark"></div>
+    <h3>Populārākie ceļojumi:</h3>
+     
+    </div>
+      
+       <a class = "text-decoration-none text-dark" href = "/postans/{{popcelojumi[0]['id']}}">
+    <div class = "row">
+      <div class = "col-5">
+        <img src="{{popcelojumi[0]['bilde']}}" class=" p-1 rounded float-end" style= "max-width:100%" alt="Picture3">
+      </div>
+       <div class = "col">
+
+         <h6>{{popcelojumi[0]["lietotajvards"]}}</h6>
+        <h4>{{popcelojumi[0]["nosaukums"]}}</h4>
+
+       </div>
+    </div>
+       </a>
+      <a class = "text-decoration-none text-dark" href = "/postans/{{popcelojumi[1]['id']}}">
+       <div class = "row">
+      <div class = "col-5">
+        <img src="{{popcelojumi[1]['bilde']}}"  class="p-1 rounded float-end" style= "max-width:100%" alt="Picture3"> 
+      </div>
+       <div class = "col">
+         <h6>{{popcelojumi[1]["lietotajvards"]}}</h6>
+        <h4>{{popcelojumi[1]["nosaukums"]}}</h4>
+       </div>
+    </div>
+      </a>
+
+      <div class = "row">
+      </div>
+    </div>
+
+    <div class ="col border-2 border-top">
+    <h3>Populārākie maršruti:</h3>
+    </div>
+    <a class = "text-decoration-none text-dark" href = "/postans/{{popcelojumi[1]['id']}}">
+     <div class = "row">
+      <div class = "col-5">
+
+        <img src="{{popcelojumi[1]['bilde']}}" class="p-1 rounded float-end" style= "max-width:100%" alt="Picture3"> 
+
+      </div>
+       <div class = "col">
+         <h6>Vārds</h6>
+        <h4>Nosaukums</h4>
+       </div>
+    </div>
+    </a>
+    <a class = "text-decoration-none text-dark" href = "/postans">
+     <div class = "row">
+      <div class = "col-5">
+        <img src="https://img.freepik.com/free-photo/full-shot-travel-concept-with-landmarks_23-2149153258.jpg?3" class="p-1 rounded float-end" style= "max-width:100%" alt="Picture3"> 
+
+      </div>
+       <div class = "col">
+         <h6>Vārds</h6>
+        <h4>Nosaukums</h4>
+       </div>
+    </div>
+    </a>
+
+
+
+
+  </div>
+    </div>
+    </div>
+
+
+
+</body>
+
+
+
+
+
+
+
+
+</html>

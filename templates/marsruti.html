@@ -1,0 +1,62 @@
+
+{%extends 'index.html'%}
+<title>{%block title%}Ceļojuma maršruti{%endblock%}</title>
+
+<div class="text-center align-center">
+<h1>{%block virsraksts%}Ceļojuma maršruti{%endblock%}</h1>
+</div>
+
+{% block saturs %}
+
+<div class="container text-center" onclick="mapsSidelines()">
+  <div class="row align-items-start">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {%for marsruti in marsruti%}
+  <div class="col">
+    <a href="/marsruti/{{marsruti['id']}}" class = "text-decoration-none text-dark">
+    <div class="card h-100">
+      <img src="{{marsruti['img']}}" alt="" class="bildesStils">
+      <div class="card-body">
+        <h5 class="card-title">{{marsruti['nosaukums']}}</h5>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary tekstaStils">Lietotājs:</small>
+      </div>
+    </div>
+    </a>
+  </div>
+      {%endfor%}
+    <div class="col">
+      <a href="#" class = "text-decoration-none text-dark">
+      <div class="card h-100">
+        <img src="https://media.bikemap.net/routes/8964975/staticmaps/1e117541-90d5-412e-aec4-a3d7c3a9f418_400x400.jpg" class="bildesStils" 
+        alt="">
+        <div class="card-body">
+          <h5 class="card-title">Ceļojuma nosaukums</h5>
+        </div>
+        <div class="card-footer">
+          <small class="text-body-secondary tekstaStils">Lietotājs:</small>
+        </div>
+      </div>
+      </a>
+    </div>
+
+
+    <div class="col">
+      <a href="#" class = "text-decoration-none text-dark">
+      <div class="card h-100">
+        <img src="https://www.selfdrivelatvia.com/wp-content/uploads/2023/02/Sirds_google-1-800x865.jpg" class="bildesStils">
+        <div class="card-body">
+        <h5 class="card-title">Ceļojuma nosaukums</h5>
+        </div>
+        <div class="card-footer">
+        <small class="text-body-secondary tekstaStils">Lietotājs:</small>
+        </div>
+      </div>
+      </a>
+    </div>
+    </div>
+  </div>
+</div> 
+
+{%endblock%}

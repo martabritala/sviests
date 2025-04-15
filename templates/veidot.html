@@ -1,0 +1,43 @@
+{%extends 'index.html'%}
+{%block title%}Publish{%endblock%}https://celojuma-bode.elinajurgelevic.repl.co
+
+
+{%block saturs%}
+<div class="container p-5 position-relative text-bg-light bg-opacity-50">
+  
+
+  <form method = "post">
+    <div class = "text-center">
+      <label class = 'lead' for="CelNosauk">Ceļojuma nosaukums:</label><br>
+      <input name = "CelNosauk" placeholder = "Ieraksti nosaukumu" type = "text"> <br>
+    </div>
+    <label class = 'lead' for="CelApraksts">Ceļojuma apraksts:</label>
+    <textarea class="form-control" placeholder = "Ievadi aprakstu" name="CelApraksts" rows="7"></textarea> <br>
+    <div class = "text-center">
+      <label class = 'lead' for="CitsInfo">Cita informācija:</label>
+    <textarea class="form-control" placeholder = "Ievadi info" name="CitsInfo" rows="3"></textarea> <br>
+    </div>
+    <div id= "visasDienas">
+      <div id = "diena">
+      <div id ='Dienas nr'>
+    <h4>Diena (nr)</h4>
+      </div>
+      <div id = "dienasApraksts">
+    <label class = 'lead' for="DienasApraksts">Dienas apraksts:</label>
+    <textarea class="form-control" placeholder = "Ievadi aprakstu" name="CelApraksts" rows="5"></textarea> <br>
+      </div>
+      <div id = "dienasNaktsmitne">
+    <label class = 'lead' for="DienasNaktsmitne">Naktsmītne:</label><br>
+      <input name = "DienasNaktsmitne" placeholder = "Ieraksti naktsmītnes nosaukumu" type = "text"> <br>
+      </div>
+      </div>
+    </div> <br>
+  <button onclick="pievienoDienu()" id="PasSaglabat" id = "pievDienu" name = "pievDienu">Pievienot Dienu</button>
+    
+    <div class = "position-absolute bottom-0 end-0">
+      <button id="PasSaglabat" type="submit">Saglabāt</button>
+      
+    </div>
+  </form>
+</div>
+{%endblock%}

@@ -1,0 +1,56 @@
+{%extends 'index.html'%}
+{%block title%} Pievienot stāstu {%endblock%} 
+{% block virsraksts %}Pievienot stāstu{% endblock %}
+{% block saturs %}
+<script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
+<style>
+  input[type=text], select {
+    width: 100%;
+    padding: 4px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 4px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: both;
+  }
+</style>
+
+<div class="container" action="/publish/send" method="get"> 
+  <div class="row"> 
+    <div class="publishBackround">
+      <div class="col-sm"> 
+        <form action="/publish/send" method="get">
+          <div class="publishBackround">
+            <label>
+              Ceļojuma nosaukums <br>
+              <input name="celojumaNosaukums" type="text" placeholder="Nosaukums">
+            </label><br><br>
+
+            <label>
+              Ceļojuma apraksts <br>
+              <textarea name="celojumaApraksts" rows = "5" cols = "140" placeholder="Ceļojuma apraksts..."></textarea>
+            </label><br><br>
+            <label>
+              Pievieno maršruta attēlu no google maps <br>
+              <input type="file" id="files" name="celojumaFiles"/>
+            </label><br><br>
+            <div id='map'>
+              <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDozwRyyzRpy5j3-1MKN1w75sYpz1zamac&callback=initMap"></script>
+            </div> <br>
+            <input class="btn btn-outline-primary" type="submit" value="Publish">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

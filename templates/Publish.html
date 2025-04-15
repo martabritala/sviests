@@ -1,0 +1,106 @@
+{%extends 'index.html'%}
+{%block title%} Pievienot stāstu {%endblock%} 
+{% block virsraksts %}Pievienot stāstu{% endblock %}
+{% block saturs %}
+<script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
+<script> 
+</script>
+<style>
+  input[type=text], select {
+    width: 100%;
+    padding: 4px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 4px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: both;
+  }
+</style>
+
+<div class="container" action="/publish/send" method="get"> 
+  <div class="row"> 
+    <div class="publishBackround">
+      <div class="col-sm"> 
+        <form action="/publish/send" method="get">
+          <label>
+            Ceļojuma nosaukums <br>
+            <input name="celojumaNosaukums" type="text" placeholder="Nosaukums">
+          </label><br><br>        
+          <label>
+            Ceļojuma apraksts <br>
+            <textarea name="celojumaApraksts" rows = "5" cols = "140" placeholder="Ceļojuma apraksts..."></textarea>
+          </label><br><br>        
+          <label>
+            <div id="day">
+            </div>
+            <button type="button" class="day" onclick=addElement('day')> Pievienot dienu</button>    
+            <button type="button" class="removeDay" onclick=removeElement('day')> Noņemt dienu</button>    
+          </label><br><br>
+          <label>
+            Papildus informācija <br>
+            <textarea name="celojumaInfo" rows = "5" cols = "140" placeholder="Papildus informācija..."></textarea>
+          </label><br><br>        
+          <!-- <label>
+            Pievieno bildes no ceļojuma <br>
+            <input type="file" id="files" name="celojumaFiles" multiple onchange="showPreview(event)"/>
+            <!-- Parada bildes -->
+            <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file -->
+          <!-- </label>
+          <br><br>  -->  
+          <label>
+            Pievieno maršruta attēlu no google maps <br>
+            <input type="file" id= 'fileUpload' name="celojumaFiles" onchange="showPreview(event)"/>
+          </label><br><br>
+          <div id="preview-container"></div> <br>
+          <label>
+            Ceļojuma datums <br>
+            <input type="date" id="start" name="tripStartDate"/>
+          </label><br><br>
+          <label>
+            Pievieno Youtube video<br>
+            <input style="max-width" name="celojumaYoutube" type="text" placeholder="Youtube link">
+          </label><br><br>
+          <div id='map'>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiyMqnYsEbB2472u5uNWjkluhAiuQ6EjU&callback=initMap"></script>
+          </div> <br>
+          <input type="hidden" id="tripRoute" name="tripRoute" value="">
+          <input class="btn btn-outline-primary" type="submit" value="Publish">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
+<!-- (Iekš shell) npm install @googlemaps/markerclusterer -->
+
+<!--
+1) No maim.py uz SQL jauztaiusa lai aizsuta datus
+2) Aisuta kordinates no html uz python.
+-->
+
+<!-- 
+// function addElement(dayID) {
+//   const newDivMain = document.createElement("div");
+//   const newDiv = document.createElement("div");
+//   const newContent = document.createElement("textarea");
+
+//   var num = document.getElementsByTagName("textarea").length-1;
+//   newContent.id = "textarea" + num;
+//   newContent.setAttribute('cols', '60')
+//   newContent.setAttribute('name', 'celojumaDienas')
+//   newDiv.appendChild(newContent);
+
+
+//   const currentDiv = document.getElementById(dayID);
+//   currentDiv.appendChild(newDiv);
+//   newDiv.innerHTML = num + ". diena (apraksts, dienas plāns, naktsmītnes...)" + '<br>' + newDiv.innerHTML;

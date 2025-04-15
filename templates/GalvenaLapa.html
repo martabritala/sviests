@@ -1,0 +1,315 @@
+<html> 
+  <head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="K020-4w-DRFXf9itQ8IUmc-pJQZ0ACWAcCGp9NrRdCo" />
+    <title>Home</title>
+
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.6.1/font/bootstrap-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet" />
+ <script src="{{url_for('static', filename='funkcijas.js')}}">
+ </script>
+
+    <style> body {
+    background-repeat: no-repeat;
+    background-image:url('{% block fons %}{{url_for("static", filename="images/mountain.png")}}{%endblock%}');
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover; }
+    </style>
+
+        </head>
+  <!-- Sākas navbar  -->
+    <nav class="navbar px-lg-5 px-0 navbar-expand-md navbar-light navbar-custom fixed-top" id="navbar"> <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <a class="navbar-brand h1" href="/">
+            <span class="fw-bold text-dark justify-content-start">
+              <img src="/static/images/cs.png" alt="LOGO" width="100" height="100">
+          </span>
+            </a>
+
+                <div class="collapse row navbar-collapse" id="navbarSupportedContent">
+              <div class="col">
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown" style="margin-right: 5px;">
+              <a class="btn btn-success" style="background-color: forestgreen;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ceļojumi</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/stasti">Stāsti</a></li>
+              <li><a class="dropdown-item" href="/marsruti">Maršruti</a></li>
+            </ul>
+          </li>
+                <li class="nav-item dropdown" style="margin-right: 5px;">
+                  <a class="btn btn-success" style="background-color: forestgreen;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Informācija</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/forums">Forums</a></li>
+              <li><a class="dropdown-item" href="/jaunumi">Jaunumi</a></li>
+              <li><a class="dropdown-item" href="/padomi">Padomi</a></li>
+            </ul>
+          </li>
+                <li class="nav-item dropdown" style="margin-right: 5px;">
+            <a class="btn btn-success" style="background-color: forestgreen;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Testi</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/flag">Guess the flag</a></li>
+              <li><a class="dropdown-item" href="/country">Guess the country</a></li>
+
+            </ul>
+          </li>
+
+                {% if login == True: %}
+              <li class="nav-item dropdown" style="margin-right: 5px;">
+                <a class="btn btn-success" style="background-color: forestgreen;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mans profils</a>
+                          <ul class="dropdown-menu">
+  <li>
+                  <a class="dropdown-item" href="/mansprofils">Mans profils</a>
+                  <a class="dropdown-item" href="/publish">Publicēt</a>
+                </li>
+
+
+
+
+
+
+<!--           <form class="form-inline my-2 my-lg-0 d-flex" id="search"> -->         
+
+<!--             <form class = form-inline> -->
+<!--               <div class="col-4"> -->
+
+            <div class="btn-space d-md-none">
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mans profils</a> </li>
+                        <ul class="dropdown-menu">
+<li>
+
+
+                <a class="dropdown-item" href="/publish">Publicēt</a>
+              </li>
+                          </div> </ul>
+                    {% else %} {% endif %}
+                        </ul>
+            </div>
+              <span class="col-12 col-xl d-none d-md-block">
+              <h1 class="virsraksts">Ceļojumu Skola</h1>
+              </span>
+              
+
+    <div class="btn-space d-md-none">
+              <input class="" type="search" placeholder="Search" aria-label="Search" oninput= "suggestions()">
+    </div>
+
+<!--               </div> -->
+
+    <div class="btn-space d-md-none mt-1">
+              <button class="btn btn-success" type="submit" onclick = "search()">Search</button>
+             </div>
+
+    </div>
+
+
+        <div class="float-right btn-space d-none d-md-block">
+            <input class="searchField" type="search" placeholder="Search" aria-label="Search" oninput="suggestions()">
+        </div>
+        <div class="float-right btn-space d-none d-md-block">
+            <button class="btn btn-success" style="background-color: forestgreen;" type="submit" onclick="search()">Search</button>
+        </div>
+    {% if login == True: %}
+      <div class="float-right d-none d-md-block">
+<!--            <div class="col-4 mr-auto"> -->
+                <a class="btn btn-primary" aria-current="page" href="/logout" style="background-color: dodgerblue;">Log out</a>
+           </div>
+
+    {% else %} 
+
+    <div class="float-right d-none d-md-block">
+<!--            <div class="col-4 mr-auto"> -->
+                <a class="btn btn-primary" aria-current="page" href="/RIHARDS" style="background-color: dodgerblue;">Log in</a>
+           </div>
+
+    {% endif %}
+    </div>
+
+        </nav>
+
+<!-- Beidzas navbar  -->
+
+
+<body>  
+  <div class="container-fluid">
+<div class = "row">
+  <div class="col-lg-1"></div>
+<div class="col">
+
+
+  <div class='text-bg-light bg-opacity-50'>
+<div class="text-center align-center">
+
+
+  
+  </div>
+
+
+
+<!-- <div class="text-center align-center"> -->
+
+
+
+    <div class="row pt-3">
+      <div class="col text-center">
+        <h1>Aicinājums lietot mūsu mājaslapu!!!</h1>
+        <h1>Support us on PayPal!</h1>
+        <img src="https://travelawaits.com/wp-content/uploads/2021/04/2ab381e0ae03785e8b67dc37ad4922ab381.jpg" class="p-1 rounded img-fluid" alt="Picture3">
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col">
+        <center><h1>Populārākie ceļojumi</h1></center>
+      </div>
+    </div>
+         <div class="row mt-4">
+            <div class="col-lg-1 "></div>
+              <div class="col-lg-4 col-sm-12 col-md-6">
+                  <a href="/stasti" style="color: black;">
+              <img src="{{popcelojumi[0]['bilde']}}" class="p-1 rounded float-end" style= "max-width:100%" alt="Picture3">
+                  <h2 style="color: black;"> {{popcelojumi[0]["nosaukums"]}} </h2>
+                    {{popcelojumi[0]["apraksts"]}}
+                  </a>
+              </div>
+              <div class="col-lg-2 d-none d-lg-block"></div>
+              <div class="col-lg-4 col-sm-12 col-md-6">
+                <a href="/stasti" style="color: black;">
+              <img src="{{popcelojumi[1]['bilde']}}" class="p-1 rounded float-end" style= "max-width:100%" alt="Picture3">
+                    <h2 style="color: black;"> {{popcelojumi[1]["nosaukums"]}} </h2>
+                  {{popcelojumi[1]["apraksts"]}}
+                </a>
+              </div>
+             <div class="col-lg-1 "></div>
+         </div>
+        <div class="row mt-3"> 
+        <div class="col-lg-1 "></div>
+          <div class="col-lg-4 col-sm-12 col-md-6">
+            <a href="/stasti" style="color: black;">
+          <img src="https://img.freepik.com/free-photo/full-shot-travel-concept-with-landmarks_23-2149153258.jpg?3" class="p-1 rounded float-end" style= "max-width:100%" alt="Picture3">
+                <h2 style="color: black;"> {{popcelojumi[2]["nosaukums"]}} </h2>
+              {{popcelojumi[2]["apraksts"]}}
+              </a>
+          </div>
+          <div class="col-lg-2 d-none d-lg-block"></div>
+          <div class="col-lg-4 col-sm-12 col-md-6">
+            <a href="/stasti" style="color: black;">
+          <img src="https://img.freepik.com/free-photo/full-shot-travel-concept-with-landmarks_23-2149153258.jpg?3" class="p-1 rounded float-end" style= "max-width:100%" alt="Picture3">
+                <h2 style="color: black;"> {{popcelojumi[3]["nosaukums"]}} </h2>
+              {{popcelojumi[3]["apraksts"]}}
+              </a>
+          </div> 
+         <div class="col-lg-1 "></div>
+        </div>
+    <div class="row mt-5">
+      <div class="col">
+        <center><h1>Populārākie maršruti</h1></center>
+      </div>
+    </div>
+         <div class="row mt-4">
+            <div class="col-lg-1 "></div>
+              <div class="col-lg-4 col-sm-12 col-md-6">
+                <a href="/marsruti" style="color: black;">
+              <img src="https://img.freepik.com/free-photo/full-shot-travel-concept-with-landmarks_23-2149153258.jpg?3" class="p-1 rounded float-end" style= "max-width:100%" alt="Picture3">
+                    <h2 style="color: black;"> maršruta nosaukums </h2>
+                    tekststekststekststekststekststekststeksts
+                    tekststekststekststekststekststekststeksts
+                    tekststekststekststekststekststekststeksts
+                  </a>
+              </div>
+              <div class="col-lg-2 d-none d-lg-block"></div>
+              <div class="col-lg-4 col-sm-12 col-md-6">
+                <a href="/marsruti" style="color: black;">
+              <img src="https://img.freepik.com/free-photo/full-shot-travel-concept-with-landmarks_23-2149153258.jpg?3" class="p-1 rounded float-end" style= "max-width:100%" alt="Picture3">
+                    <h2 style="color: black;"> maršruta nosaukums </h2>
+                    tekststekststekststekststekststekststeksts
+                    tekststekststekststekststekststekststeksts
+                    tekststekststekststekststekststekststeksts
+                  </a>
+              </div> 
+             <div class="col-lg-1 "></div>
+         </div>
+        <div class="row mt-3"> 
+        <div class="col-lg-1 "></div>
+          <div class="col-lg-4 col-sm-12 col-md-6">
+            <a href="/marsruti" style="color: black;">
+          <img src="https://img.freepik.com/free-photo/full-shot-travel-concept-with-landmarks_23-2149153258.jpg?3" class="p-1 rounded float-end" style= "max-width:100%" alt="Picture3">
+                <h2 style="color: black;"> maršruta nosaukums </h2>
+                tekststekststekststekststekststekststekststekststekststeksts
+                tekststekststekststekststekststekststekststekststekststeksts
+                tekststekststekststekststekststekststekststekststekststeksts
+              </a>
+          </div>
+          <div class="col-lg-2 d-none d-lg-block"></div>
+          <div class="col-lg-4 col-sm-12 col-md-6">
+            <a href="/marsruti" style="color: black;">
+          <img src="https://img.freepik.com/free-photo/full-shot-travel-concept-with-landmarks_23-2149153258.jpg?3" class="p-1 rounded float-end" style= "max-width:100%" alt="Picture3">
+                <h2 style="color: black;"> maršruta nosaukums </h2>
+                tekststekststekststekststekststekststekststekststekststeksts
+                tekststekststekststekststekststekststekststekststekststeksts
+                tekststekststekststekststekststekststekststekststekststeksts
+              </a>
+          </div> 
+         <div class="col-lg-1 "></div>
+        </div>
+
+        {% for celojums in popcelojumi%}
+        <!-- <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <a href="#" class = "text-decoration-none text-dark">
+        <div class="card h-100">
+          <img src="https://res.cloudinary.com/gwatco/image/upload/dpr_auto/t_image-card/f_auto/v1678176000/new-website/static/homepage/global-travel-cover/banner.webp" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">maršruta nosaukums</h5>
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae error illo porro doloremque fugiat eius sint obcaecati est ratione culpa eaque repellat quis, corporis blanditiis molestiae vero explicabo. Nesciunt, odit!.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-body-secondary">Šodien</small>
+          </div>
+        </div>
+        </a>
+      </div>
+    </div> -->
+        {%endfor%}
+      </div>
+    </div>
+  <div class="col-lg-1"></div>
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+  </div>
+    <div class="row my-5">
+      <div class="col">
+      <br>
+      </div>
+    </div>
+    <!-- </div> -->
+</div>
+ 
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+</html>

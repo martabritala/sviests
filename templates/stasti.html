@@ -1,0 +1,45 @@
+{%extends 'index.html'%}
+<title>{%block title%}Ceļojuma stāsti{%endblock%}</title>
+
+<div class="text-center align-center">
+<h1>{%block virsraksts%}Celojuma stāsti{%endblock%}</h1>
+</div>
+
+{% block saturs %}
+
+
+
+<div class="container text-center">
+<div class="row align-items-start">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+    {%for celojums in celojumi%}
+  <div class="col">
+    <a href="/postans/{{celojums['id']}}" class ="text-decoration-none text-dark">
+    <div class="card h-100">
+      <img src= "{{celojums['tiessaiste']}}"class="card-img-top" class="bildesStils" alt="..." >
+      <div class="card-body">
+        <h5 style="text-align: center;" class="card-title" >{{celojums['nosaukums']}}</h5>
+      </div>
+       </a>
+      <div class="card-footer" id="laiki">
+        <small class="text-body-secondary"> 
+          <button onclick="add_Like({{celojums['id']}})" class="pogastatiem2" hover="red">
+          {{celojums['likes']}}<img src="https://clipart-library.com/images_k/like-button-transparent-youtube/like-button-transparent-youtube-12.png" width=20px height=20px>  </button>
+        </small>
+        <small class="text-body-secondary">   
+        <button onclick="commentPoga({{celojums['id']}})" class="pogastastiem" >
+          <img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" width=20px height=20px> {{celojums['commentCount']}}  </button>
+        </small>
+        <div id="CommentDIV{{celojums['id']}}" class="d-none">{%for komentars in celojums['comments']%}{{komentars['lietotajvards']}} - {{komentars['comment']}}
+          <br>{%endfor%}</div>
+      </div>
+    </div>
+  </div>
+    {%endfor%}
+
+
+
+    </div>
+  </div>
+</div> 
+{%endblock%}

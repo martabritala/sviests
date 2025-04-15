@@ -1,0 +1,106 @@
+{%extends 'index.html'%}
+{% block saturs %}
+
+
+
+<!--<div class="container text-center">
+  <div class="row">
+    <div class="col align-self-start">
+     
+    </div>
+    <div class="col align-self-center">
+      
+<form id="signin" >
+  <br>
+  <h1>Sign Up</h1>
+      <br><br>
+<input type="text" placeholder="Username" id="username" required><br><br>
+<input type="text" placeholder="Vārds" id="vards" required><br><br>
+<input type="text" placeholder="Uzvards" id="uzvards" required><br><br>
+<input type="email" placeholder="E-pasts" id="epasts" required><br><br>
+<input type="password" placeholder="Parole" id="parole" required><br><br>
+<input type="password" placeholder="Apstiprināt paroli" id="parole2" required><br><br>
+<input type="checkbox" id="noteikumi" required><h8>Es piekrītu mājas lapas noteikumiem</h2><br><br>
+<input type="submit"  value="Pabeigt" onclick="nospied2()" class="btn btn-outline-primary">&nbsp;&nbsp;<a href="https://celojuma-bode.elinajurgelevic.repl.co/RIHARDS" >LogIn</a>
+</form> 
+ </div>
+ 
+    <div class="col align-self-end">
+    
+    </div>
+  </div>
+  </div>    --> 
+
+
+<section class="vh-100" >
+  <form method = "post">
+  <div class="container py-5 ">
+    <div class="row d-flex justify-content-center align-items-center ">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://thumbs.dreamstime.com/b/air-travel-vertical-panoramic-composition-43180437.jpg"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                <form>
+
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                    <img src="/static/images/cs.png" alt="LOGO" class="aplis">
+                  </div>
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign up now</h5>
+                  
+                    <div class="form-outline mb-4">
+                    <input type="text" id="username" name = "RegUsername" class="form-control form-control-lg" />
+                    <label class="form-label" for="form2Example17">Username</label>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        
+                        <div class="form-outline">
+                          <input type="text" id="vards" name = "RegName" class="form-control" />
+                          <label class="form-label" for="form3Example1">First name</label>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <input type="text" id="uzvards" name = "RegSurname"class="form-control" />
+                          <label class="form-label" for="form3Example2">Last name</label>
+                        </div>
+                      </div>
+                    </div>
+                  <div class="form-outline mb-4">
+                    <input type="email" id="epasts" name = "RegMail" class="form-control form-control-lg" />
+                    <label class="form-label" for="form2Example17">Email address</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input type="password" id="parole" name = "RegPassword" class="form-control form-control-lg" />
+                    <label class="form-label" for="form2Example27">Password</label>
+                  </div>
+
+                  <div class="pt-1 mb-4">
+                    <input class="btn btn-dark btn-lg btn-block" type="submit" onclick="nospied2()" value= "Sign Up">
+                  </div>
+                  <a href="#!" class="small text-muted">Terms of use.</a>
+                  <a href="#!" class="small text-muted">Privacy policy</a>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+</section>
+
+
+
+{%endblock%}
